@@ -18,7 +18,7 @@
 function ilkiniDon(stringArray, callback) {
   return callback(stringArray[0])
 }
-console.log('örnek görev:', ilkiniDon(['as','sa'],function(metin){return metin+metin}));
+console.log('örnek görev:', ilkiniDon(['as', 'sa'], function (metin) { return metin + metin }));
 
 // Başlangıç Challenge'ı Sonu
 
@@ -40,11 +40,13 @@ console.log('örnek görev:', ilkiniDon(['as','sa'],function(metin){return metin
 function skorArtirici() {
   let skor = 0;
   return function skorGuncelle() {
-   return skor++;
+    return skor++;
   }
 }
 
 const skor1 = skorArtirici();
+
+
 
 // skor2 kodları
 let skor = 0;
@@ -64,11 +66,12 @@ Aşağıdaki takimSkoru() fonksiyonununda aşağıdakileri yapınız:
 Not: Bu fonskiyon, aşağıdaki diğer görevler için de bir callback fonksiyonu olarak da kullanılacak
 */
 
-function takimSkoru(/*Kodunuzu buraya yazınız*/){
-    /*Kodunuzu buraya yazınız*/
+function takimSkoru() {
+  return Math.floor(Math.random() * (16)) + 10;
+
 }
 
-
+console.log("Görev-2__", takimSkoru());
 
 
 /* Görev 3: macSonucu() 
@@ -84,14 +87,28 @@ Aşağıdaki macSonucu() fonksiyonununda aşağıdakileri yapınız:
   "EvSahibi": 92,
   "KonukTakim": 80
 }
-*/ 
+*/
 
-function macSonucu(/*Kodunuzu buraya yazınız*/){
-  /*Kodunuzu buraya yazınız*/
+function macSonucu(takimSkoru, ceyrekSayisi) {
+
+  const takimlarNesnesi =
+  {
+    EvSahibi: 0,
+    KonukTakim: 0
+  };
+
+  for (let ceyrek = 0; ceyrek < ceyrekSayisi; ceyrek++) {
+    takimlarNesnesi.EvSahibi = takimSkoru() + takimlarNesnesi.EvSahibi;
+    takimlarNesnesi.KonukTakim = takimSkoru() + takimlarNesnesi.KonukTakim;
+
+  };
+
+
+  return takimlarNesnesi
 }
 
 
-
+console.log(macSonucu(takimSkoru, 4));
 
 
 
@@ -154,7 +171,7 @@ function skorTabelasi(/*Kodunuzu buraya yazınız*/) {
 
 
 /* Aşağıdaki satırları lütfen değiştirmeyiniz*/
-function sa(){
+function sa() {
   console.log('Kodlar çalışıyor');
   return 'as';
 }
