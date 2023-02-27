@@ -108,7 +108,7 @@ function macSonucu(takimSkoru, ceyrekSayisi) {
 }
 
 
-console.log(macSonucu(takimSkoru, 4));
+console.log("Görev-3__", macSonucu(takimSkoru, 4));
 
 
 
@@ -126,11 +126,20 @@ Aşağıdaki periyotSkoru() fonksiyonununda aşağıdakileri yapınız:
   */
 
 
-function periyotSkoru(/*Kodunuzu buraya yazınız*/) {
-  /*Kodunuzu buraya yazınız*/
+function periyotSkoru(takimSkoru,) {
+  const takimlarNesnesi =
+  {
+    EvSahibi: 0,
+    KonukTakim: 0
+  };
 
+  takimlarNesnesi.EvSahibi = takimSkoru();
+  takimlarNesnesi.KonukTakim = takimSkoru();
+
+  return takimlarNesnesi
 }
 
+console.log("Görev-4__", periyotSkoru(takimSkoru));
 
 /* Zorlayıcı Görev 5: skorTabelasi() 
 Aşağıdaki skorTabelasi() fonksiyonunu kullanarak aşağıdakileri yapınız:
@@ -163,11 +172,23 @@ MAÇ UZAR ise skorTabelasi(periyotSkoru,takimSkoru,4)
 ] */
 // NOTE: Bununla ilgili bir test yoktur. Eğer logladığınız sonuçlar yukarıdakine benziyor ise tmamlandı sayabilirsiniz.
 
-function skorTabelasi(/*Kodunuzu buraya yazınız*/) {
-  /*Kodunuzu buraya yazınız*/
+function skorTabelasi(periyotSkoru, takimSkoru, ceyrekSayisix) {
+  
+  const takimlarNesnesi =
+  {
+    EvSahibi: 0,
+    KonukTakim: 0
+  };
+let skorTabelasiDizisi = [];
+for (oynananCeyrek = 0; oynananCeyrek < ceyrekSayisix; oynananCeyrek++) {
+  skorTabelasiDizisi[oynananCeyrek] = `${oynananCeyrek+1}. Periyot: Ev Sahibi ${periyotSkoru(takimSkoru).EvSahibi} - Konuk Takım ${periyotSkoru(takimSkoru).KonukTakim}`
+}
+return skorTabelasiDizisi
+
+
 }
 
-
+console.log(skorTabelasi(periyotSkoru, takimSkoru, 4))
 
 
 /* Aşağıdaki satırları lütfen değiştirmeyiniz*/
