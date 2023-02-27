@@ -30,10 +30,13 @@ console.log('örnek görev:', ilkiniDon(['as', 'sa'], function (metin) { return 
   Aşağıdaki skor1 ve skor2 kodlarını inceleyiniz ve aşağıdaki soruları altına not alarak cevaplayın
   
   1. skor1 ve skor2 arasındaki fark nedir?
-  
+  Cevap: skor1 skorArtirici() fonksiyonunu kullanır ve bu fonksiyon da kendi içerisinde skorGuncelle isimli bir callback fonksiyonunu çalıştırır. 
+  skorGuncelle ile skor değerini 1 artırır ve  skor değeri function scope olarak fonksiyon içinde tanımlanır.
+skor2 ise skor'u kendi başına 1 artıran bir fonksiyondur ve skor değerini globalden 0 olarak alır.
   2. Hangisi bir closure kullanmaktadır? Nasıl tarif edebilirsin? (yarınki derste öğreneceksin :) )
-  
+  skor 1 closure kullanmaktadır. Kendi içerisinde skorGuncelle fonksiyonu ile birlikte çalışır.
   3. Hangi durumda skor1 tercih edilebilir? Hangi durumda skor2 daha mantıklıdır?
+  skor değişkenini global scope'ta kullanmak istemiyorsak skor1 kullanılabilir. Yine gizlilik için skoru 1 artırma işleminin skor1 fonksiyonu kullanılarak yapılması daha mantıklıdır.
 */
 
 // skor1 kodları
@@ -126,7 +129,7 @@ Aşağıdaki periyotSkoru() fonksiyonununda aşağıdakileri yapınız:
   */
 
 
-function periyotSkoru(takimSkoru,) {
+function periyotSkoru(takimSkoru) {
   const takimlarNesnesi =
   {
     EvSahibi: 0,
@@ -174,17 +177,17 @@ MAÇ UZAR ise skorTabelasi(periyotSkoru,takimSkoru,4)
 
 function skorTabelasi(periyotSkoru, takimSkoru, ceyrekSayisix) {
   
-  const takimlarNesnesi =
-  {
-    EvSahibi: 0,
-    KonukTakim: 0
-  };
+const oynananMaclar = [];
+ 
 let skorTabelasiDizisi = [];
-for (oynananCeyrek = 0; oynananCeyrek < ceyrekSayisix; oynananCeyrek++) {
-  skorTabelasiDizisi[oynananCeyrek] = `${oynananCeyrek+1}. Periyot: Ev Sahibi ${periyotSkoru(takimSkoru).EvSahibi} - Konuk Takım ${periyotSkoru(takimSkoru).KonukTakim}`
-}
-return skorTabelasiDizisi
 
+for (oynananCeyrek = 0; oynananCeyrek < ceyrekSayisix; oynananCeyrek++) {
+  oynananMaclar.push(periyotSkoru(takimSkoru));
+  skorTabelasiDizisi[oynananCeyrek] = `${oynananCeyrek+1}. Periyot: Ev Sahibi ${periyotSkoru(takimSkoru).EvSahibi} - Konuk Takım ${periyotSkoru(takimSkoru).KonukTakim}`;
+  
+}
+
+return skorTabelasiDizisi
 
 }
 
