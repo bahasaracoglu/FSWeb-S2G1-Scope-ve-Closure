@@ -88,28 +88,27 @@ Aşağıdaki macSonucu() fonksiyonununda aşağıdakileri yapınız:
   Örneğin: macSonucu(takimSkoru, 4) çalıştırınca aşağıdaki object'i dönmeli
 {
   "EvSahibi": 92,
-  "KonukTakim": 80
+  "KonukTakim": 80i
 }
 */
 
-function macSonucu(takimSkoru, ceyrekSayisi) {
+function macSonucu(cbtakimSkoru, ceyrekSayisi) {
 
-  const takimlarNesnesi =
-  {
+  let macSonucuNesnesi = {
     EvSahibi: 0,
     KonukTakim: 0
-  };
+  }
 
   for (let ceyrek = 0; ceyrek < ceyrekSayisi; ceyrek++) {
-    takimlarNesnesi.EvSahibi = takimSkoru() + takimlarNesnesi.EvSahibi;
-    takimlarNesnesi.KonukTakim = takimSkoru() + takimlarNesnesi.KonukTakim;
-
+    macSonucuNesnesi.EvSahibi = macSonucuNesnesi.EvSahibi + cbtakimSkoru();
+    macSonucuNesnesi.KonukTakim = macSonucuNesnesi.KonukTakim + cbtakimSkoru();
+    //macSonucuNesnesi.EvSahibi = ceyrekSonucu.EvSahibi + macSonucuNesnesi.EvSahibi;
+    //macSonucuNesnesi.KonukTakim = ceyrekSonucu.KonukTakim + macSonucuNesnesi.KonukTakim;
   };
 
+  return macSonucuNesnesi
 
-  return takimlarNesnesi
 }
-
 
 console.log("Görev-3__", macSonucu(takimSkoru, 4));
 
@@ -129,15 +128,15 @@ Aşağıdaki periyotSkoru() fonksiyonununda aşağıdakileri yapınız:
   */
 
 
-function periyotSkoru(takimSkoru) {
+function periyotSkoru(cbtakimSkoru) {
   const takimlarNesnesi =
   {
     EvSahibi: 0,
     KonukTakim: 0
   };
 
-  takimlarNesnesi.EvSahibi = takimSkoru();
-  takimlarNesnesi.KonukTakim = takimSkoru();
+  takimlarNesnesi.EvSahibi = cbtakimSkoru();
+  takimlarNesnesi.KonukTakim = cbtakimSkoru();
 
   return takimlarNesnesi
 }
@@ -175,23 +174,55 @@ MAÇ UZAR ise skorTabelasi(periyotSkoru,takimSkoru,4)
 ] */
 // NOTE: Bununla ilgili bir test yoktur. Eğer logladığınız sonuçlar yukarıdakine benziyor ise tmamlandı sayabilirsiniz.
 
-function skorTabelasi(periyotSkoru, takimSkoru, ceyrekSayisix) {
-  
-const oynananMaclar = [];
- 
-let skorTabelasiDizisi = [];
+function skorTabelasi(cbPeriyotSkoru, cbTakimSkoru, ceyrekSayisix) {
+  const scoreArray = [];
 
-for (oynananCeyrek = 0; oynananCeyrek < ceyrekSayisix; oynananCeyrek++) {
-  oynananMaclar.push(periyotSkoru(takimSkoru));
-  skorTabelasiDizisi[oynananCeyrek] = `${oynananCeyrek+1}. Periyot: Ev Sahibi ${periyotSkoru(takimSkoru).EvSahibi} - Konuk Takım ${periyotSkoru(takimSkoru).KonukTakim}`;
-  
+  let teamScores = {
+    EvSahibi: 0,
+    KonukTakim: 0,
+  };
+  for (let i = 1; i <= ceyrekSayisix; i++) {
+    const periyorSkorSonuc = cbPeriyotSkoru(cbTakimSkoru);
+    const hSc = periyorSkorSonuc.EvSahibi;
+    const gSc = periyorSkorSonuc.KonukTakim;
+    teamScores.EvSahibi = teamScores.EvSahibi + hSc;
+    teamScores.KonukTakim = teamScores.KonukTakim + gSc;
+    const scoreBacktick = `${i}. Periyot: Ev Sahibi ${hSc} - Konuk Takım ${gSc}`;
+    scoreArray.push(scoreBacktick);
+    // eğer son ceyrekSayisixda isek ve skorlar aynıysa
+    if (ceyrekSayisix == i && teamScores.EvSahibi == teamScores.KonukTakim) {
+      const periyotSkorSonuc = cbPeriyotSkoru(cbTakimSkoru);
+      const hScE = periyotSkorSonuc.EvSahibi;
+      const gScE = periyotSkorSonuc.KonukTakim;
+      teamScores.EvSahibi = teamScores.EvSahibi + hScE;
+      teamScores.KonukTakim = teamScores.KonukTakim + gScE;
+      scoreArray.push(`1. Uzatma: Ev Sahibi ${hScE} - Konuk Takım ${gScE}`);
+    }
+  }
+
+  scoreArray.push(
+    `Maç Sonucu: Ev Sahibi ${teamScores.EvSahibi} - Konuk Takım ${teamScores.KonukTakim}`
+  );
+
+  return [...scoreArray];
 }
-
-return skorTabelasiDizisi
-
-}
-
 console.log(skorTabelasi(periyotSkoru, takimSkoru, 4))
+
+  //const oynananMaclar = [];
+
+  //let skorTabelasiDizisi = [];
+
+  //for (oynananCeyrek = 0; oynananCeyrek < ceyrekSayisix; oynananCeyrek++) {
+  //oynananMaclar.push(periyotSkoru(takimSkoru));
+  //skorTabelasiDizisi[oynananCeyrek] = `${oynananCeyrek+1}. Periyot: Ev Sahibi ${periyotSkoru(takimSkoru).EvSahibi} - Konuk Takım ${periyotSkoru(takimSkoru).KonukTakim}`;
+
+  //}
+
+  //return skorTabelasiDizisi
+
+
+
+//console.log(skorTabelasi(periyotSkoru, takimSkoru, 4))
 
 
 /* Aşağıdaki satırları lütfen değiştirmeyiniz*/
